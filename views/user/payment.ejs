@@ -1,0 +1,12 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+<h1>Payment</h1>
+<h2>Buying <%=books.title %></h2>
+<h2>Author <%=books.author %></h2>
+<p>Pay <%= books.price %></p>
+<form action="/books/<%=books._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+    <input class="btn btn-xs btn-success" type="submit" value="Pay">
+ </form>
+ 
