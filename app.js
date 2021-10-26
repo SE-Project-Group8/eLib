@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
+app.use('/public/image/', express.static('./public/image'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // app.use(bodyParser.urlencoded({ extended: true }));
