@@ -1,15 +1,31 @@
 <% include partials/header %>
-
-
 <% include partials/alerts %>
 
+
+<style>
+  body{
+    background-color: #418250;
+    background-image: url("https://source.unsplash.com/goFBjlQiZFU/1600x900");
+    opacity: 1;
+  }
+  .colo{
+    background-color: green;
+  }
+  .row{
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+</style>
+<!-- // YLSwjSy7stw -->
 <section id="usersignUpForm">
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <div class="card">
+        <div class="card  stw">
           <div class="card-header text-center">
             <h4>Admin Sign Up</h4>
+            <h5>Enter your credentials to signup for Admin</h5>
           </div>
             <div class="card-block">
               <form class="p-3" action="/auth/admin-signup" method="POST">
@@ -34,7 +50,7 @@
                   <input type="text" name="adminCode" placeholder="Enter the secret code" class="form-control" required>
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" class="btn colo btn-block">Submit</button>
               </form>
             </div>
         </div>
