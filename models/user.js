@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema({
   },
   password: String,
   joined: { type: Date, default: Date.now() },
+  booklist: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book",
+    }
+  ],
   bookIssueInfo: [
     {
       book_info: {

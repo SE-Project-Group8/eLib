@@ -19,23 +19,28 @@
 <section id="actions" class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <a href="/books/all/all/1" class="btn btn-primary btn-block">
           <i class="fa fa-plus"></i> Issue Book
         </a>
       </div>
 
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <a href="/books/return-renew" class="btn btn-info btn-block">
           <i class="fa fa-retweet"></i> Renew/Return Book
         </a>
       </div>
       
       
-       <div class="col-md-4">
+       <div class="col-md-3">
         <a href="/wishlist/<%=user.id%>" class="btn btn-danger btn-block" >
           <i class="fa fa-credit-card"></i> My Wishlist
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/booklist/<%=user.id%>" class="btn btn-primary btn-block" >
+          <i class="fa fa-credit-card"></i> Issued Books
         </a>
       </div>
     </div>
