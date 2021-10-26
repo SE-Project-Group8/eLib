@@ -295,6 +295,7 @@ exports.postIssueBook = async(req, res, next) => {
         {
             user.wishlist.splice(pos, 1);
         }
+        user.booklist.push(book._id);
         await user.save();
 
         res.redirect("/books/all/all/1");
@@ -428,6 +429,14 @@ exports.postReturnBook = async(req, res, next) => {
     3. Log the activity
     4. Redirect to /books/details/:book_id
 */
+exports.getbooks= async(req, res, next) => {
+    const user_id = req.user._id;
+    const user = await User.findById(user_id).populate({
+        path: 'booklist'
+    });
+    //res.send(user);
+    res.render('user/booklist', {user: user});
+}
 exports.postNewComment = async(req, res, next) => {
     try {
         const comment_text = req.body.comment;

@@ -1,0 +1,8 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>>
+<% for(let b of user.booklist){ %>
+    <p><%= b.title %></p>
+    <a href="/b">Read</a>
+    <% } %>

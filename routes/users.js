@@ -31,6 +31,7 @@ router.post("/books/:book_id/issue/:user_id", middleware.isLoggedIn, userControl
 router.get("/payment/:book_id/:user_id", middleware.isLoggedIn, userController.payment);
 router.post("/wish/:book_id/:user_id", middleware.isLoggedIn, userController.wishlist);
 router.get("/wishlist/:user_id", middleware.isLoggedIn, userController.getwishlist);
+router.get("/booklist/:user_id", middleware.isLoggedIn, userController.getbooks);
 
 //user -> show return-renew page
 router.get("/books/return-renew", middleware.isLoggedIn, userController.getShowRenewReturn);
