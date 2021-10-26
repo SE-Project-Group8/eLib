@@ -2,63 +2,87 @@
 
 <% include ../partials/bubble %>
 
-<section id="usersignUpForm">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center">
-            <h4>User Sign Up</h4>
-          </div>
-            <div class="card-block">
-              <form class="p-3" action="/auth/user-signUp" method="POST">
-                  
-                <div class="form-group">
-                  <label class="form-control-label">First Name</label>
-                  <input type="text" name="firstName" placeholder="firstName" class="form-control" required>
+<style>
+  #border{
+    border: 1px solid lightgray;
+    color: black;
+  }
+  #mlr{
+    margin: 40px;
+  }
+  #imgp{
+    margin-top: 30%;
+  }
+</style>
+<div class="card mt-5 mb-5 mx-auto" style="max-width: 55%;">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="../../public/image/signup.png" class="img-fluid rounded-start" id="imgp" alt="...">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body" id="mlr">
+        <!-- <h5 class="card-title">User Sign Up</h5> -->
+        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+
+        <section class="card-title" id="usersignUpForm">
+          <div class="mt-0">
+            <div>
+              <div>
+                <div>
+                  <div class="text-center">
+                    <h4 class="card-title">User Sign Up</h4>
+                  </div>
+                    <div class="card-block">
+                      <form action="/auth/user-signUp" method="POST">
+                          
+                        <div class="form-group">
+                          <input type="text" name="firstName" placeholder="First Name" class="form-control" required id="border">
+                        </div>
+                        
+                         <div class="form-group">
+                          <input type="text" name="lastName" placeholder="Last Name" id="border" class="form-control" required>
+                        </div>
+                          
+                        <div class="form-group">
+                          <input type="text" name="username" placeholder="User Name" id="border" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <input type="email" name="email" placeholder="Email" id="border" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <input type="password" name="password" placeholder="Password" id="border" class="form-control" required>
+                        </div>
+                        
+                         <div class="form-group">
+                          <label class="form-control-label">Gender</label>
+                          <select name="gender" class="form-control" >
+                            <option name="male">Male</option>
+                            <option name="female">Female</option>
+                            <option name="others">Others</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <input type="text" name="address" placeholder="Address" id="border" class="form-control" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                      </form>
+                    </div>
                 </div>
-                
-                 <div class="form-group">
-                  <label class="form-control-label">Last Name</label>
-                  <input type="text" name="lastName" placeholder="lastName" class="form-control" required>
-                </div>
-                  
-                <div class="form-group">
-                  <label class="form-control-label">Pick a username</label>
-                  <input type="text" name="username" placeholder="Username" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                  <label class="form-control-label">Email</label>
-                  <input type="email" name="email" placeholder="Email" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                  <label class="form-control-label">Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control" required>
-                </div>
-                
-                 <div class="form-group">
-                  <label class="form-control-label">Gender</label>
-                  <select name="gender" class="form-control" >
-                    <option name="male">Male</option>
-                    <option name="female">Female</option>
-                    <option name="others">Others</option>
-                  </select>
-                </div>
-                
-                 <div class="form-group">
-                  <label class="form-control-label">Address</label>
-                  <input type="text" name="address" placeholder="Address" class="form-control" required>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-              </form>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
+
       </div>
     </div>
   </div>
-</section>
+</div>
+
+
 
 <% include ../partials/footer %>
