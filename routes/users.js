@@ -27,11 +27,6 @@ router.get("/user/1/notification", middleware.isLoggedIn, userController.getNoti
 //user -> issue a book
 router.post("/books/:book_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueBook);
 
-//payment
-router.get("/payment/:book_id/:user_id", middleware.isLoggedIn, userController.payment);
-router.post("/wish/:book_id/:user_id", middleware.isLoggedIn, userController.wishlist);
-router.get("/wishlist/:user_id", middleware.isLoggedIn, userController.getwishlist);
-
 //user -> show return-renew page
 router.get("/books/return-renew", middleware.isLoggedIn, userController.getShowRenewReturn);
 

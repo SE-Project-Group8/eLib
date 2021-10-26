@@ -34,19 +34,13 @@ app.use(express.urlencoded({extended: true}));
 app.use(sanitizer());
 
 // db config
-// mongoose
-//   .connect(process.env.DB_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-//     useFindAndModify: false,
-//   })
-mongoose.connect('mongodb://localhost:27017/library', {
+mongoose
+  .connect(process.env.DB_URL, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
-})
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("MongoDB is connected"))
   .catch((error) => console.log(error));
 
@@ -119,6 +113,6 @@ app.use(authRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log(`server is running`);
 });

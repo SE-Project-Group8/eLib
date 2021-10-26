@@ -7,7 +7,6 @@ const bookSchema = new mongoose.Schema({
    author : String,
    description : String,
    category : String, 
-   price: Number,
    comments : [{
        type : mongoose.Schema.Types.ObjectId,
        ref : "Comment",
