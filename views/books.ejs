@@ -183,7 +183,7 @@ body{
             </p>
            
             
-            <% if(currentUser) { var match = false%>
+            <% if(currentUser) { var match = false; var match2= false %>
                 <% user.bookIssueInfo.forEach(book_info => { %>
                     <% if(book_info._id.equals(books[i]._id)) { %> 
                        <a href="#" class="btn btn-xs btn-warning disabled" role="button" aria-disabled="true">Issued!</a>
@@ -193,7 +193,7 @@ body{
              <% user.wishlist.forEach(book_info => { %>
               <% if(book_info._id.equals(books[i]._id)) { %> 
                  <a href="#" class="btn btn-xs btn-warning disabled" role="button" aria-disabled="true">Wishlisted!</a>
-              <% match = true; } %>
+              <% match2 = true; } %>
        <% }) %>
              <% if(!match) {%>
               <!-- /payment/:book_id/:user_id -->
@@ -201,7 +201,7 @@ body{
             <form action="/payment/<%=books[i]._id%>/<%=currentUser._id%>" method="GET" class="d-inline">
                <input class="btn btn-xs btn-success" type="submit" value="Issue">
             </form>
-            <% }else{ %>
+            <% }else if(match2== false){ %>
               <form action="/wish/<%=books[i]._id%>/<%=currentUser._id%>" method="POST" class="d-inline">
                 <input class="btn btn-xs btn-success" type="submit" value="Add to wishlist">
              </form>

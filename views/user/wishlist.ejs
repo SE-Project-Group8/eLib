@@ -1,8 +1,41 @@
 <% include ../partials/header %>
 
 <!--NAVIGATION BAR FOR USER-->
-<% include ../partials/userNav %>
-<h1>Wishlist</h1>
+<% include ../partials/userNav %>>
+<h1 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin-top: 20px;">Wishlist Section</h1>
+<div style="text-align: center; justify-content: center; justify-items: center;">
+<table style="border:5px solid black; text-align: center; margin-left: auto; margin-right: auto; width: 50%; background-color: azure;">
+    <tr style="border:5px solid black;">
+        <th style="border:5px solid black;">Book</th>
+        <th style="border:5px solid black;">Status</th>
+      </tr>
 <% for(let b of user.wishlist){ %>
-    <p><%= b.title %></p>
+    <tr style="border:4px solid black;">
+    <div>
+        <td style="border:5px solid black;">
+    <p><%= b.title %></p></td>
+    <td style="border:5px solid black;">
+    <div>
+        <% if(b.stock > 0){ %>
+            <p id="p1" style="font-weight: bold;">Available</p>
+            
+            <% }else{ %>
+                <p id="p1" style="font-weight: bold;">Not Available</p>
+                <% } %>
+    </div>
+</td>
+    </div>
+</tr>
     <% } %>
+</table>
+</div>
+<script>
+    var p1= document.getElementById('p1');
+    if(p1.innerHTML=='Available')
+    {
+        p1.style.color= 'green'; 
+    }
+    else{
+        p1.style.color= 'red';
+    }
+</script>

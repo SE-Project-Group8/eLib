@@ -281,6 +281,22 @@ exports.postIssueBook = async(req, res, next) => {
         await book.save();
         await activity.save();
 
+        const book_id = req.params.book_id;
+        const pos = req.user.bookIssueInfo.indexOf(req.params.book_id);
+
+        var match2= false;
+        user.wishlist.forEach(book_info => { 
+            if(book_info._id.equals(book._id)) 
+            {
+             match2 = true; 
+            }  
+        })
+        if(match2==true)
+        {
+            user.wishlist.splice(pos, 1);
+        }
+        await user.save();
+
         res.redirect("/books/all/all/1");
     } catch(err) {
         console.log(err);

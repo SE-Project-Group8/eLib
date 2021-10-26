@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
+app.use('/public/image/', express.static('./public/image'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -116,6 +117,11 @@ app.use(userRoutes);
 app.use(adminRoutes);
 app.use(bookRoutes);
 app.use(authRoutes);
+
+app.get('/b', (req, res) => {
+  res.sendFile(__dirname +"/reader.html")
+  });
+  
 
 const PORT = process.env.PORT || 3000;
 
