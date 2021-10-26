@@ -11,8 +11,9 @@ const issueSchema = new mongoose.Schema({
        ISBN : String,
        category : String,
        stock : Number,
+       price: Number,
        issueDate : {type : Date, default : Date.now()},
-       returnDate : {type : Date, default : Date.now() + 7*24*60*60*1000},
+       returnDate : {type : Date, default : Date.now() + 10*24*60*60*1000},
        isRenewed : {type : Boolean, default : false},
    }, 
    

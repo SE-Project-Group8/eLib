@@ -113,22 +113,37 @@
             <p class="text-muted">
               <small class="text-muted">In stock : <%=books[i].stock%></small>
             </p>
+            <p class="text-muted">
+              <small class="text-muted">Price : <%=books[i].price%></small>
+            </p>
            
             
-            <% if(currentUser && books[i].stock > 0) { var match = false%>
+            <% if(currentUser) { var match = false%>
                 <% user.bookIssueInfo.forEach(book_info => { %>
                     <% if(book_info._id.equals(books[i]._id)) { %> 
                        <a href="#" class="btn btn-xs btn-warning disabled" role="button" aria-disabled="true">Issued!</a>
                        <a href="/books/return-renew" class="btn btn-xs btn-success" role="button">Return/Renew</a>
                     <% match = true; } %>
              <% }) %>
-             
+             <% user.wishlist.forEach(book_info => { %>
+              <% if(book_info._id.equals(books[i]._id)) { %> 
+                 <a href="#" class="btn btn-xs btn-warning disabled" role="button" aria-disabled="true">Wishlisted!</a>
+              <% match = true; } %>
+       <% }) %>
              <% if(!match) {%>
-            <form action="/books/<%=books[i]._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+              <!-- /payment/:book_id/:user_id -->
+              <% if(books[i].stock > 0) {%>
+            <form action="/payment/<%=books[i]._id%>/<%=currentUser._id%>" method="GET" class="d-inline">
                <input class="btn btn-xs btn-success" type="submit" value="Issue">
             </form>
+            <% }else{ %>
+              <form action="/wish/<%=books[i]._id%>/<%=currentUser._id%>" method="POST" class="d-inline">
+                <input class="btn btn-xs btn-success" type="submit" value="Add to wishlist">
+             </form>
+             <% } %>
             <% } %>
             <% } %>
+           
             <a href="/books/details/<%=books[i]._id%>" class="btn btn-xs btn-primary">Details</a>
           </div>
         </div>

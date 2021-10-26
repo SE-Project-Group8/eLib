@@ -30,11 +30,16 @@ exports.getUserDashboard = async(req, res, next) => {
 
             for(let issue of issues) {
                 if(issue.book_info.returnDate < Date.now()) {
-                    user.violatonFlag = true;
-                    user.save();
-                    req.flash("warning", "You are flagged for not returning " + issue.book_info.title + " in time");
+                    user.violationFlag= true;
+                    await user.save();
+                    req.flash("error", "You are penalized for not returning '" + issue.book_info.title + "' on time");
                     break;
                 }
+                if((issue.book_info.returnDate) < (Date.now()+(3*24*60*60*1000))) {
+                    req.flash("warning", "ALERT!! Please return the book '" + issue.book_info.title + "' before the deadline!");
+                    break;
+                }
+                
             }
         }
         const activities = await Activity
@@ -174,10 +179,10 @@ exports.getNotification = async(req, res, next) => {
     res.render("user/notification");
 }
 
-//user -> issue a book
-exports.postIssueBook = async(req, res, next) => {
+//payment
+exports.payment = async(req, res, next) => {
     if(req.user.violationFlag) {
-        req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
+        req.flash("error", "You are penalized for violating rules on returning books. Untill the flag is lifted, You can't issue any books");
         return res.redirect("back");
     }
 
@@ -185,6 +190,48 @@ exports.postIssueBook = async(req, res, next) => {
         req.flash("warning", "You can't issue more than 5 books at a time");
         return res.redirect("back");
     }
+
+    const book = await Book.findById(req.params.book_id);
+    const user = await User.findById(req.params.user_id);
+    res.render("user/payment", {books: book, currentUser: user});
+}
+exports.getwishlist = async(req, res, next) => {
+    const book = await Book.findById(req.params.book_id);
+    //const user = await User.findById(req.params.user_id);
+    const user = await User.findById(req.params.user_id).populate({
+        path: 'wishlist'
+    });
+    //res.send(user.wishlist);
+    res.render('user/wishlist', {user: user});
+}
+exports.wishlist = async(req, res, next) => {
+    if(req.user.violationFlag) {
+        req.flash("error", "You are penalized for violating rules on returning books. Untill the flag is lifted, You can't issue any books");
+        return res.redirect("back");
+    }
+
+    if(req.user.bookIssueInfo.length >= 5) {
+        req.flash("warning", "You can't issue more than 5 books at a time");
+        return res.redirect("back");
+    }
+
+    const book = await Book.findById(req.params.book_id);
+    const user = await User.findById(req.params.user_id);
+    user.wishlist.push(book._id);
+    await user.save();
+    res.redirect("/books/all/all/1");
+}
+//user -> issue a book
+exports.postIssueBook = async(req, res, next) => {
+    // if(req.user.violationFlag) {
+    //     req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
+    //     return res.redirect("back");
+    // }
+
+    // if(req.user.bookIssueInfo.length >= 5) {
+    //     req.flash("warning", "You can't issue more than 5 books at a time");
+    //     return res.redirect("back");
+    // }
 
     try {
         const book = await Book.findById(req.params.book_id);
