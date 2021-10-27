@@ -1,14 +1,85 @@
 <% include partials/header %>
 
+<style>
+
+body{
+        background-image: url("https://source.unsplash.com/XbNKot1VvfU/1600x900");
+        background-color: rgba(255, 118,0, 0.78);
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+       } 
+
+
+
+ .containr{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+ }
+
+ .ser1{
+   width: 152%;
+ }
+
+ .serc2{
+     margin-left: 128px;
+ }
+
+ .bo{
+   margin-left: -10px;
+ }
+
+ .btncss{
+   width: 90px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .left{
+   display: flex;
+   margin-left: 777px;
+ }
+
+ .sign{
+    margin-right: 3px;
+    background-color: #b7b4b1;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log{
+    background-color: #b7b4b1;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.ho{
+  color: black;
+}
+
+.navbar{
+  background-color: #ad9990;;
+}
+
+</style>
+ 
+
+
 <!--NAVIGATION BAR-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark  p-0 sticky-top">
    <div class="container">
      <% if(!currentUser) { %>
-      <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand ho" href="/">Home</a>
       <% } else if(!currentUser.isAdmin) { %>
-      <a class="navbar-brand" href="/user/1">Home</a>
+      <a class="navbar-brand ho" href="/user/1">Home</a>
       <% } else if(currentUser.isAdmin) { %>
-      <a class="navbar-brand" href="/admin">Home</a>
+      <a class="navbar-brand ho" href="/admin">Home</a>
       <% } %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,25 +124,25 @@
               </div>
             </li>
             
-            <li class="nav-item">
-                <a href="/user/1/notification" class="nav-link">
-                    <i class="fa fa-bell"></i><span class="badge badge-danger badge-pill">2</span>
-                </a>
-            </li>
+    
+              
           </ul>
           <% } else { %>
-          <a href="/signUp" class="btn btn-primary btn-sm ml-auto">Sign up</a>
+            <div class="left">
+          <a href="/auth/user-signup" class="btn sign btn-primary btn-sm ml-auto">Sign up</a>
+          <a href="/auth/user-login" class="btn log btn-primary btn-sm ml-auto">Log in</a>
           <% } %>
+        </div>
       </div>
   </div>
 </nav>
 
 <!--SEARCH BAR-->
-<section id="search_bar" class="my-3 py-4 bg-light">
-  <div class="container">
+<section id="search_bar" class="my-3 py-4">
+  <div class="containr con2 ">
    <form action="/books/all/all/1" method="POST">
-    <div class="row">
-        <div class="col-md-5 p-1">
+    <div class="con2 bo">
+        <div class="p-1 ser1">
           <select name="filter" class="form-control">
             <option selected disabled>Select Filter...</option>
             <option  name="title">Title</option>
@@ -81,12 +152,12 @@
           </select>
         </div>
         
-         <div class="col-md-5 p-1">
+         <div class="p-1 ser1">
           <input name="searchName"  type="text" class="form-control" placeholder="Search Books">
         </div>
         
-         <div class="col-md-2 p-1">
-          <input type="submit" class="btn btn-outline-primary btn-block" value="Search">
+         <div class="col-md-2 p-1 serc2">
+        <input type="submit" class="ser1 btncss" value="Search">
         </div>
       </div>
     </form>
