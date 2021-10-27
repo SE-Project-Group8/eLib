@@ -2,32 +2,65 @@
 
 <% include ../partials/alerts %>
 
-<section id="adminLoginForm">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center">
-            <h4>Admin Login</h4>
-          </div>
-            <div class="card-block">
-              <form class="p-3" action="/auth/admin-login" method="POST">
-                <div class="form-group">
-                  <label class="form-control-label">Username</label>
-                  <input type="text" name="username" placeholder="Username" class="form-control">
+<% include ../partials/bubble %>
+
+<style>
+  #border{
+    border: 1px solid lightgray;
+    color: black;
+  }
+  #mlr{
+    margin: 40px;
+  }
+  #imgp{
+    margin-top: 30%;
+  }
+  #mt{
+    margin-top: 10px;
+  }
+  #mtc{
+    margin-top: 80px;
+  }
+</style>
+<div class="card mt-5 mb-5 mx-auto" id="mt" style="max-width: 55%; height: 500px;">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="../../public/image/adminlogin.png" class="img-fluid rounded-start" id="imgp" alt="...">
+    </div>
+    <div class="col-md-6" id="mtc">
+      <div class="card-body" id="mlr">
+        <!-- <h5 class="card-title">User Sign Up</h5> -->
+        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+
+        <section id="adminLoginForm" class="card-title">
+          <div class="mt-0">
+            <div>
+              <div>
+                <div>
+                  <div class="text-center">
+                    <h4 class="card-title">Admin Login</h4>
+                  </div>
+                    <div class="card-block">
+                      <form action="/auth/admin-login" method="POST">
+                        <div class="form-group">
+                          <input type="text" name="username" placeholder="Username" id="border" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" name="password" placeholder="Password" id="border" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login!</button>
+                      </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-control-label">Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login!</button>
-              </form>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
+
       </div>
     </div>
   </div>
-</section>
-
+</div>
 
 <% include ../partials/footer %>
