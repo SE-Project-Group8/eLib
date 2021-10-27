@@ -34,7 +34,9 @@ router.post("/auth/admin-signup", authController.postAdminSignUp);
 router.get("/auth/user-login", authController.getUserLoginPage);
 
 router.post("/auth/user-login", passport.authenticate("local", {
+    successFlash: true,
         successRedirect : "/user/1",
+        failureFlash: true,
         failureRedirect : "/auth/user-login",
     }), (req, res)=> {
 });
