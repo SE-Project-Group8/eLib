@@ -2,7 +2,24 @@
 
 <!--NAVIGATION BAR FOR USER-->
 <% include ../partials/userNav %>>
+<style>
+    table, th, td {
+      border:3px solid black;
+    }
+    </style>
+<div style="text-align: center; ">
+    <h1 style="text-align: center; margin-bottom: 50px;">Issued Books</h1>
+
+<table style="margin-left: auto; margin-right: auto; width: 80%; margin-bottom: 20px;">
 <% for(let b of user.booklist){ %>
+<tr>
+    <td>
     <p><%= b.title %></p>
+</td>
+<td>
     <a href="/b">Read</a>
+</td>
+</tr>
     <% } %>
+</table>
+</div>
