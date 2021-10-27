@@ -1,43 +1,186 @@
 <% include partials/header %>
 <% include partials/alerts %>
+   <style>
+     *{
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
 
+       }
+
+       section{
+           position: relative;
+           width: 100%;
+           height: 100vh;
+           display: flex;        
+       }
+
+       section .imgBx{
+           position: relative;
+           width: 50%;
+           height: 100%;
+       }
+
+       section .imgBx:before{
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(225deg,#e91e63,#03a9f4);
+           z-index: 1;
+           mix-blend-mode: screen;
+       }
+
+       section .imgBx img{
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+       }
+
+       section .contain{
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           width: 50%;
+           height: 100%;
+           margin-left: -57px;
+
+
+       }
+.formBx{
+           width: 50%
+
+       } 
+
+       
+       .tx{
+           color: #607d8b;
+           font-weight: 600;
+           font-size: 1.5em;
+           text-transform: uppercase;
+           margin-bottom: 20px;
+           border-bottom: 4px solid #ff4584;
+           display: inline-block;
+           letter-spacing: 1px;
+       }
+
+
+       .ibox{
+           margin-bottom: 20px;
+          /* color: #607d8b;
+           background-color: transparent ; */
+           
+       }
+
+       label{
+         font-size: 16px;
+         margin-bottom: 5px;
+         display: inline-block;
+         color: #607db8;
+         font-weight: 300;
+            font-size: 16px;
+           letter-spacing: 1px;
+       } 
+
+
+
+
+
+       input {
+        width: 100%;
+        padding: 10px 20px;
+        outline: none;
+        font-weight: 400;
+        border: 1px solid #607d8b;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #607d8b;
+        background: transparent;
+        border-radius: 30px;
+
+      } 
+      .form-control{
+        width: 175%;
+        border-radius: 30px;
+      }
+
+   .bsec{
+    display: flex;
+      flex-direction: row;
+   }
+
+    .buttom{
+      width: 176%;
+    margin-top: 20px;
+    background: #ff4584;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    }
+
+    .buttom:hover{
+      background: #f53677;
+      
+    }
+    
+    
+    
+
+  </style>
 <section id="usersignUpForm">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center">
+
+  <div class="imgBx">
+    <img src="../public/image/lan.png" alt="">
+  </div>
+
+  <div class="formBx contain">
+ 
+  
+          <div class="  tx">
             <h4>Admin Sign Up</h4>
           </div>
-            <div class="card-block">
-              <form class="p-3" action="/auth/admin-signup" method="POST">
+            <div >
+              <form  action="/auth/admin-signup" method="POST">
             
-                <div class="form-group">
-                  <label class="form-control-label">Pick a username</label>
+                <div class="ibox">
+                  <label >Pick a username</label>
                   <input type="text" name="username" placeholder="Username" class="form-control" required>
                 </div>
                 
-                <div class="form-group">
-                  <label class="form-control-label">Email</label>
+                <div class=" ibox">
+                  <label >Email</label>
                   <input type="email" name="email" placeholder="Email" class="form-control" required>
                 </div>
                 
-                <div class="form-group">
-                  <label class="form-control-label">Password</label>
+                <div class=" ibox">
+                  <label class= "head">Password</label>
                   <input type="password" name="password" placeholder="Password" class="form-control" required>
                 </div>
                 
-                <div class="form-group">
-                  <label class="form-control-label">Secret Code</label>
+                <div class=" ibox">
+                  <label >Secret Code</label>
                   <input type="text" name="adminCode" placeholder="Enter the secret code" class="form-control" required>
                 </div>
+                <div class="ibox">
+                <input type="submit" value="Sign up" class="buttom"></input>
+              </div>
+            </div>
+                </div>
                 
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
               </form>
             </div>
-        </div>
-      </div>
-    </div>
+    
+
+    
   </div>
 </section>
 
