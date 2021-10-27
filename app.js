@@ -22,6 +22,17 @@ const express = require("express"),
 // uncomment below line for first time to seed database;
 // Seed(1000);
 
+const DB='mongodb+srv://aibii358:abhishek@20@cluster0.7ximp.mongodb.net/library?retryWrites=true&w=majority'
+
+mongoose.connect(DB,{
+  useNewUrlParser:true,
+    useCreateIndex:true,
+    useUnifiedTopology:true,
+    useFindAndModify:false
+}).then(()=>{
+  console.log('connection successfull');
+}).catch((err)=> console.log('no connection'));
+
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
 // app config
@@ -121,7 +132,22 @@ app.use(authRoutes);
 app.get('/b', (req, res) => {
   res.sendFile(__dirname +"/reader.html")
   });
-  
+
+  app.get('/b1', (req, res) => {
+    res.sendFile(__dirname +"/reader1.html")
+    });
+
+  app.get('/b2', (req, res) => {
+      res.sendFile(__dirname +"/reader2.html")
+      });
+
+  app.get('/b3', (req, res) => {
+        res.sendFile(__dirname +"/reader3.html")
+        });
+
+  app.get('/b4', (req, res) => {
+          res.sendFile(__dirname +"/reader4.html")
+          });
 
 const PORT = process.env.PORT || 3000;
 
