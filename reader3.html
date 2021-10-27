@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.min.js" integrity="sha512-YP2ayDGlp2agSpcEeqEbVBwpU1OjNVKk3teB/J5j0947d5wstmhirMUxHFQCh7Y7HwqZCAoqBEHlltvGReweTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    #canvas_container{
+        width:1250px;
+        height:450px;
+        overflow:auto;
+        background: #333;
+        text-align:center;
+        border:3px solid;
+
+    }
+</style>
+
+
+</head>
+<body>
+    <div id="pdf_viewer">
+        <div id="canvas_container">
+            <canvas id="pdf_renderer"></canvas>
+        </div>
+        <div id="navigation_controls">
+            <button id="go_previous">Previous</button>
+            <input type="number" value="1" id="current_page">
+            <button id="go_next">Next</button>
+        </div>
+        <div id="zoom_controls">
+            <button id="zoom_in">+</button>
+            <button id="zoom_out">-</button>
+        </div>
+
+
+    </div>
+</body>
+
+<script>
+    var myState={
+        pdf:null,
+        currentPage:1 ,
+        zoom:1
+    }
+
+    pdfjsLib.getDocument("./Let Us C.pdf").then(pdf=>{
+        myState.pdf=pdf
+        render()
+    })
+
+    function render(){
+        myState.pdf.getPage(myState.currentPage).then(page=>{
+            var canvas=document.getElementById("pdf_renderer")
+            var ctx=canvas.getContext("2d")
+            var viewport=page.getViewport(myState.zoom)
+
+            canvas.width=viewport.width;
+            canvas.height=viewport.height;
+
+            page.render({
+                canvasContext:ctx,
+                viewport:viewport
+            })
+        })
+    }
+
+    document.getElementById('go_previous')
+    .addEventListener('click',(e)=>{
+        if(myState.pdf==null||myState.currentPage==1) return;
+        myState.currentPage=myState.currentPage-1;
+        document.getElementById("current_page").value=myState.currentPage;
+        render()
+    })
+
+    document.getElementById('go_next')
+    .addEventListener('click',(e)=>{
+        console.log("click");
+        if(myState.pdf==null||myState.currentPage>myState.pdf._pdfInfo.numPages) return;
+        myState.currentPage=myState.currentPage+1;
+        document.getElementById("current_page").value=myState.currentPage;
+        render()
+    })
+    document.getElementById("current_page")
+    .addEventListener('keypress',(e)=>{
+        if(myState.pdf==null) return;
+        var code=(e.keyCode? e.keyCode:e.which)
+        if(code==13)
+        {
+            var desiredPage=document.getElementById("current_page").valueAsNumber;
+            if(desiredPage>=1 && desiredPage<=myState.pdf._pdfInfo.numPages){
+                myState.currentPage=desiredPage
+                document.getElementById("current_page").value=desiredPage
+                render()
+            }
+        }
+    })
+
+
+        document.getElementById('zoom_in')
+        .addEventListener('click',(e)=>{
+            if(myState.pdf==null) return;
+            myState.zoom=myState.zoom + 0.5
+            render()
+        })
+
+        document.getElementById('zoom_out')
+        .addEventListener('click',(e)=>{
+            console.log("click");
+            if(myState.pdf==null) return;
+            myState.zoom=myState.zoom - 0.5
+            render()
+        })
+
+  
+</script>
+</html>
