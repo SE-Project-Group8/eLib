@@ -22,7 +22,7 @@ const express = require("express"),
 // uncomment below line for first time to seed database;
 // Seed(1000);
 
-const DB='mongodb+srv://aibii358:abhishek@20@cluster0.7ximp.mongodb.net/library?retryWrites=true&w=majority'
+const DB='mongodb+srv://pran:pran@cluster0.5szgj.mongodb.net/eLib?retryWrites=true&w=majority'
 
 mongoose.connect(DB,{
   useNewUrlParser:true,
@@ -53,14 +53,14 @@ app.use(sanitizer());
 //     useCreateIndex: true,
 //     useFindAndModify: false,
 //   })
-mongoose.connect('mongodb://localhost:27017/library', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-})
-  .then(() => console.log("MongoDB is connected"))
-  .catch((error) => console.log(error));
+// mongoose.connect('mongodb://localhost:27017/library', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+// })
+//   .then(() => console.log("MongoDB is connected"))
+//   .catch((error) => console.log(error));
 
 //PASSPORT CONFIGURATION
 
