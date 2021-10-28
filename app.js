@@ -65,7 +65,7 @@ app.use(sanitizer());
 //PASSPORT CONFIGURATION
 
 const store = new MongoStore({
-  uri: process.env.DB_URL,
+  uri: process.env.DB,
   collection: "sessions",
 });
 
